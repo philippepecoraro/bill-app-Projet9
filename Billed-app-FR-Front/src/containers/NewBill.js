@@ -1,6 +1,6 @@
 import { ROUTES_PATH } from '../constants/routes.js'
 import Logout from "./Logout.js"
-let extension = "false";
+let extension = false;
 
 export default class NewBill {
     constructor({ document, onNavigate, store, localStorage }) {
@@ -21,7 +21,7 @@ export default class NewBill {
         e.preventDefault()
         const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
         if (file.type === "image/jpg" || file.type === "image/jpeg" || file.type === "image/png") {
-            extension = "true";
+            extension = true;
             const filePath = e.target.value.split(/\\/g)
             this.fileName = filePath[filePath.length - 1]
             const email = JSON.parse(localStorage.getItem("user")).email
@@ -33,7 +33,7 @@ export default class NewBill {
     }
     handleSubmit = e => {
         e.preventDefault()
-        if (extension === "true") {
+        if (extension) {
             console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
             const email = JSON.parse(localStorage.getItem("user")).email
             this.store
