@@ -34,7 +34,6 @@ export default class NewBill {
     handleSubmit = e => {
         e.preventDefault()
         if (extension) {
-            console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
             const email = JSON.parse(localStorage.getItem("user")).email
             this.store
                 .bills()
@@ -45,7 +44,6 @@ export default class NewBill {
                     }
                 })
                 .then(({ fileUrl, key }) => {
-                    console.log(fileUrl)
                     this.billId = key
                     this.fileUrl = fileUrl
                     const bill = {
@@ -70,6 +68,7 @@ export default class NewBill {
     }
 
     // not need to cover this function by tests
+    /* istanbul ignore next */
     updateBill = (bill) => {
         if (this.store) {
             this.store
